@@ -16,6 +16,8 @@ jobs:
     concurrency:
       group: ${{ github.workflow }}-${{ github.ref }}
     steps:
+      - id: 'checkout'
+        uses: 'actions/checkout@v4'
 
       # configure gcloud `setup-gcloud` automatically
       - id: 'auth'
@@ -29,6 +31,5 @@ jobs:
       - id: 'upload-files'
         uses: 'google-github-actions/upload-cloud-storage@v2'
         with:
-          path: 'static'
+          path: './index.html'
           destination: 'cs1660a5-bucket'
-          parent: false
